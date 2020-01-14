@@ -1,6 +1,6 @@
 <div id="manager-list" class="manager-list">
   <app-manager-list-item
-    *ngFor="let reel of data | orderBy: settings.sort.order : settings.sort.reverse | filterFavorite: settings.favorites"
+    *ngFor="let reel of data | async | orderBy: settings.sort.order : settings.sort.reverse | filterFavorite: settings.favorites"
     [reel]="reel"
     [settings]="settings"
     [selectedItem]="selectedItem"

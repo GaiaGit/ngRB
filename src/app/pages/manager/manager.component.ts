@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { Reel } from '../../shared/model/reel';
 import { ReelService } from '../../shared/services/reel.service';
@@ -11,7 +12,7 @@ import { ReelService } from '../../shared/services/reel.service';
 })
 export class ManagerComponent implements OnInit {
 
-  data:Reel[];
+  data:Observable<Reel[]>;
 
   settings = {
     sort: { order: 'name', reverse: false},
@@ -26,13 +27,15 @@ export class ManagerComponent implements OnInit {
   }
 
   loadData() {
-    this.reelService.getReels()
-      .subscribe(response => {
-        this.data = response;
-        console.log(this.data)
-      }, error => console.log(error)
+
+    this.data = this.reelService.getReels()
+    .pipe(
+      catchError(err => {
+        return throwError(err);
+      })
     )
   }
+  
   deleteReel(reel:Reel) {
     console.log(this)
     this.reelService.delReel(reel.id)
