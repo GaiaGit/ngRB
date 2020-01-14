@@ -1,0 +1,19 @@
+export interface Reel {
+  id:number;
+  name:string;
+  description:string;
+  tracksTotal:number;
+  duration:number;
+  createdDate:Date;
+  modifiedDate:Date;
+  viewedLastDate:Date;
+  favoriteDate:Date;
+  viewsTotal:number;
+  viewersTotal:number;
+  sharedTotal:number;
+  editorsTotal:number;
+  view:boolean;
+  edit:boolean;
+  saveAs:boolean;
+  remove:boolean;
+}

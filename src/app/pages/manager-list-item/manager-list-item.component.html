@@ -1,0 +1,71 @@
+<div class="list-item layout-padding manager-column-main" [class.list-item-active]="selectedItem === reel.id">
+  <div class="manager-column column-favorite">
+    <button class="plain-button" (click)="addFavorite($event)" title="Add to Favorites" aria-label="Add to Favorites">
+      <svg-icon
+        src="{{ reel.favoriteDate ? 'assets/icons/star.svg' : 'assets/icons/star-outline.svg' }}"
+        [svgStyle]="{ 'width.px':21 }"
+        class="list-item-icon">
+      </svg-icon>
+    </button>
+  </div>
+  <div class="manager-column column-name">
+    <div class="item-name-header">
+      <p>{{reel.name}}</p>
+      <button class="plain-button" (click)="openDetailsDialog(reel)" title="View details" aria-label="View details">
+          <svg-icon src="assets/icons/dots-horizontal.svg" [svgStyle]="{ 'width.px':21 }" class="list-item-icon"></svg-icon>
+      </button>
+    </div>
+    <p class="manager-column list-item-description" *ngIf="selectedItem !== reel.id" [@displayAnimation]>
+      {{reel.description}}
+    </p>
+    <div class="list-item-actions" *ngIf="selectedItem === reel.id" [@displayAnimation]>
+      <button class="plain-button" title="Copy Reel" aria-label="Copy Reel">
+        <svg-icon src="assets/icons/content-duplicate-alt.svg" [svgStyle]="{ 'width.px':24 }" class="list-item-icon"></svg-icon>
+      </button>
+      <button class="plain-button" title="Delete Reel" aria-label="Delete Reel" (click)="deleteThisReel(reel)">
+        <svg-icon src="assets/icons/delete.svg" [svgStyle]="{ 'width.px':21 }" class="list-item-icon"></svg-icon>
+      </button>
+    </div>
+  </div>
+  <div *ngFor="let column of columnFields[settings.filter]" [className]="column.sorter.field" class="manager-column list-column-data">
+    <span *ngIf="column.text.type === 'date'">
+      {{ (reel[column.sorter.sortBy] | date: 'mediumDate')
+          || column.text.noValue }}
+    </span>
+    <span *ngIf="column.text.type === 'date'">
+      {{ reel[column.sorter.sortBy] | date: 'mediumTime' }}
+    </span>
+    <span *ngIf="column.text.type === 'array' && column.sorter.column !== 'length'">
+      {{ (reel[column.sorter.sortBy[0]] + " " + column.text.value[0])
+          || column.text.noValue[0] }}
+    </span>
+    <span *ngIf="column.text.type === 'array' && column.sorter.column === 'length'">
+      {{ (reel[column.sorter.sortBy[0]]  | duration: 'medium')
+          || column.text.noValue[0] }}
+    </span>
+    <span *ngIf="column.text.type === 'array'">
+      {{ reel[column.sorter.sortBy[1]] }} {{ column.text.value[1]
+          || column.text.noValue[1] }}
+    </span>
+  </div>
+  <!-- <div class="manager-column list-column-data column-dateModified">
+    <div>{{ reel.modifiedDate | date: 'mediumDate' }}</div>
+    <div>{{ reel.modifiedDate | date: 'mediumTime' }}</div>
+  </div>
+  <div class="manager-column list-column-data column-length">
+    <div>{{ reel.duration | duration }}</div>
+    <div>{{ reel.tracksTotal }} Tracks</div>
+  </div>
+  <div class="manager-column list-column-data column-views">
+    <div>{{ reel.viewsTotal }} Total</div>
+    <div>{{ reel.viewersTotal }} Viewers</div>
+  </div>
+  <div class="manager-column list-column-data column-shared">
+    <div>{{ reel.sharedTotal }} Users</div>
+    <div>{{ reel.editorsTotal }} Editors</div>
+  </div>
+  <div class="manager-column list-column-data column-dateCreated">
+    <div>{{ reel.createdDate | date: 'mediumDate' }}</div>
+    <div>{{ reel.createdDate | date: 'mediumTime' }}</div>
+  </div> -->
+</div>

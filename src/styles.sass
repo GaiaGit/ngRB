@@ -1,1 +1,143 @@
-/* You can add global styles to this file, and also import other style files */
+@import "vars.sass"
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap')
+
+html
+  background-color: #ECEFF1
+  font-family: "Roboto", sans-serif
+  /* for mobile 100% height */
+  height: 100vh
+  min-height: initial !important
+
+body
+    margin: 0
+    padding: 0
+    height: 100%
+    width: 100%
+    min-width: 320px
+    /* for mobile 100% height */
+    min-height: initial !important
+
+@media (min-width: $break-1024) and (min-height: $break-1366), (min-width: $break-1366) and (min-height: $break-1024)
+  html
+    font-size: 18px
+
+@media (max-width: $break-800), (max-height: $break-600)
+  html
+    font-size: 14px
+
+.layout-padding
+  padding: 0 20px
+
+.plain-button
+  border: none
+  background: transparent
+  cursor: pointer
+  outline: none
+  padding: 0
+  margin: 0
+
+.manager-column-main
+  grid-gap: 20px
+  grid-template-columns: 30px auto 120px 120px 120px 120px 120px 120px
+
+.manager-column
+  grid-row: 1
+  -ms-grid-row: 1
+
+.column-favorite
+  text-align: center
+
+.column-name
+  min-width: 260px
+
+.sorter-column
+  display: flex
+  align-items: center
+
+/* Responsive Columns */
+
+@media screen and (max-width:$break-1440)
+  .column-viewedLastDate
+    display: none
+  .manager-column-main
+    grid-template-columns: 30px auto 120px 120px 120px 120px 120px
+
+@media screen and (max-width:$break-1260)
+  .column-dateCreated
+    display: none
+  .manager-column-main
+    grid-template-columns: 30px auto 120px 120px 120px 120px
+
+@media screen and (max-width:$break-1024)
+  .column-shared
+    display: none
+  .manager-column-main
+    grid-template-columns: 30px auto 120px 120px 120px
+
+@media screen and (max-width:$break-800)
+  .column-views
+    display: none
+  .manager-column-main
+    grid-template-columns: 30px auto 120px 120px
+
+@media screen and (max-width:$break-640)
+  .column-length
+    display: none
+  .manager-column-main
+    grid-template-columns: 30px auto 120px
+
+@media screen and (max-width:$break-480)
+  .column-dateModified
+    display: none
+  .manager-column-main
+    grid-template-columns: 30px auto
+
+
+/* Material Dialogs */
+
+.mat-dialog-title
+  margin-top: 0 !important
+  margin-bottom: 10px !important
+  padding: 10px
+  box-sizing: border-box
+  background: #3f8f90
+  display: flex !important
+  height: 64px
+  max-height: 64px
+  min-height: 64px
+  color: #fff
+  fill: #fff
+  align-items: center
+
+.mat-dialog-container
+  background: #ededed !important
+  padding-top: 0 !important
+  padding-left: 0 !important
+  padding-right: 0 !important
+  box-sizing: border-box
+
+.mat-dialog-content
+  padding: 0 20px 10px
+  box-sizing: border-box
+  width: 100%
+  margin: 0 !important
+  color: #000
+
+/* Details Modal */
+.mat-list-base .mat-list-item.details-row .mat-list-item-content
+  -ms-flex-align: start !important
+  -webkit-box-align: start !important
+  align-items: flex-start !important
+  box-sizing: border-box !important
+  display: flex !important
+  margin-bottom: 10px !important
+  padding: 0
+
+.details-row-data
+  width: 100%
+  justify-content: space-between
+  border-bottom: 2px dotted #bdbdbd
+  box-sizing: border-box
+  overflow: hidden
+  align-items: stretch
+  align-content: stretch

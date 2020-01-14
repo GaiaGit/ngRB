@@ -1,0 +1,21 @@
+<header class="manager-header">
+  <div id="navbar" class="manager-header-navbar layout-padding" [ngClass]="{'compactHeader': !expandedHeader}">
+    <div class="manager-navbar-title">
+      <svg-icon
+        src="assets/icons/reel-logo.svg"
+        [svgStyle]="{ 'width.px':32 }"
+        class="manager-logo">
+      </svg-icon>
+      Manager
+    </div>
+    <div class="navbar-chevron">
+      <button class="plain-button navbar-chevron-btn" (click)="toggleHeader()" aria-label="Toggle header">
+        <svg-icon
+          src="{{ expandedHeader ? 'assets/icons/chevron-down.svg' : 'assets/icons/chevron-up.svg' }}"
+          [svgStyle]="{ 'width.px':22 }">
+        </svg-icon>
+      </button>
+    </div>
+  </div>
+  <app-manager-sorter *ngIf="expandedHeader" [settings]="settings" [@headerToggler]></app-manager-sorter>
+</header>

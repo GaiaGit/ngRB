@@ -1,0 +1,133 @@
+<div id="sorterBar">
+  <div id="sorter" class="manager-header-sorter layout-padding manager-column-main">
+    <div class="manager-column column-favorite">
+      <button class="plain-button" (click)="filterFavorite()">
+        <svg-icon src="{{ settings.favorites ? 'assets/icons/star.svg' : 'assets/icons/star-outline.svg'}}" [svgStyle]="{ 'width.px':21 }"></svg-icon>
+      </button>
+    </div>
+    <div class="manager-column sorter-column column-name" *ngIf="isSmallScreen">
+      <svg-icon src="assets/icons/reel-alt.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+      <button class="plain-button" (click)="setOrder('name',false)">
+        NAME / DESC.
+      </button>
+      <svg-icon *ngIf="settings.sort.order === 'name'"
+        src="{{  settings.sort.order === 'name' && settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+        [svgStyle]="{ 'width.px':17, 'height.px':17 }">
+      </svg-icon>
+    </div>
+    <div class="manager-column sorter-column column-dateModified">
+      <svg-icon src="assets/icons/calendar-clock.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }" [svgStyle]="{ 'width.px':18 }"></svg-icon>
+      <button class="plain-button" (click)="setOrder('modifiedDate',false)">
+        MODIFIED
+      </button>
+      <svg-icon *ngIf="settings.sort.order === 'modifiedDate'"
+        src="{{ settings.sort.order === 'modifiedDate' && settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+        [svgStyle]="{ 'width.px':17, 'height.px':17 }">
+      </svg-icon>
+    </div>
+    <div class="manager-column sorter-column column-length">
+      <svg-icon src="assets/icons/timer.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }" [svgStyle]="{ 'width.px':18 }"></svg-icon>
+      <button class="plain-button" (click)="setOrder('duration',false)">
+        LENGTH
+      </button>
+      <svg-icon *ngIf="settings.sort.order === 'duration'"
+        src="{{ settings.sort.order === 'duration' && settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+        [svgStyle]="{ 'width.px':17, 'height.px':17 }">
+      </svg-icon>
+    </div>
+    <div class="manager-column sorter-column column-views">
+      <svg-icon src="assets/icons/ondemand-video.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+      <button class="plain-button" (click)="setOrder('viewsTotal',false)">
+        VIEWS
+      </button>
+      <svg-icon *ngIf="settings.sort.order === 'viewsTotal'"
+        src="{{ settings.sort.order === 'viewsTotal' && settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+        [svgStyle]="{ 'width.px':17, 'height.px':17 }">
+      </svg-icon>
+    </div>
+    <div class="manager-column sorter-column column-shared">
+      <svg-icon src="assets/icons/share-variant.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+      <button class="plain-button" (click)="setOrder('sharedTotal',false)">
+        SHARED
+      </button>
+      <svg-icon *ngIf="settings.sort.order === 'sharedTotal'"
+        src="{{ settings.sort.order === 'sharedTotal' && settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+        [svgStyle]="{ 'width.px':17, 'height.px':17 }">
+      </svg-icon>
+    </div>
+    <div class="manager-column sorter-column column-dateCreated">
+      <svg-icon src="assets/icons/date-created-alt.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+      <button class="plain-button" (click)="setOrder('createdDate',false)">
+        CREATED
+      </button>
+      <svg-icon *ngIf="settings.sort.order === 'createdDate'"
+        src="{{ settings.sort.order === 'createdDate' && settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+        [svgStyle]="{ 'width.px':17, 'height.px':17 }">
+      </svg-icon>
+    </div>
+  </div>
+  <div id="sortMenu">
+   <button #sortMenuBtn [matMenuTriggerFor]="sortMenu" class="plain-button" title="Order reels by" aria-label="Order reels by">
+      <svg-icon src="assets/icons/dots-vertical.svg" [svgStyle]="{ 'width.px':22 }"></svg-icon>
+   </button>
+   <mat-menu #sortMenu="matMenu" [overlapTrigger]="false">
+      <span (mouseleave)="closeSortMenu()">
+        <!-- <md-menu-item ng-repeat="field in vm.listSorterMenu(vm.reelsDisplay.filter) track by $index"
+                 ng-click="vm.sorterClick(field.sorter)"
+                 ng-if="$mdMedia('max-width:'+ vm.menuBreakpoints[$index] +'px')">
+       <md-button>
+         <md-icon md-svg-icon="{{'rbIcons:' + field.icon}}"></md-icon>
+         <span>
+             {{ field.header }}
+             <md-icon ng-if="vm.selectCol(field.sorter)"
+                      md-svg-icon="{{ vm.reelsDisplay.sorter.reverse ? 'rbIcons:arrow-down' : 'rbIcons:arrow-up' }}">
+             </md-icon>
+         </span>
+       </md-button>
+   </md-menu-item> -->
+        <button mat-menu-item (click)="setOrder('name', false)">
+          <svg-icon src="assets/icons/reel-alt.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+          NAME / DESC.
+          <svg-icon *ngIf="settings.sort.order === 'name'"
+            src="{{ settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+            [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+        </button>
+        <button mat-menu-item (click)="setOrder('modifiedDate', false)">
+          <svg-icon src="assets/icons/calendar-clock.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }" [svgStyle]="{ 'width.px':18 }"></svg-icon>
+          MODIFIED
+          <svg-icon *ngIf="settings.sort.order === 'modifiedDate'"
+            src="{{ settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+            [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+        </button>
+        <button mat-menu-item (click)="setOrder('duration', false)">
+          <svg-icon src="assets/icons/timer.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }" [svgStyle]="{ 'width.px':18 }"></svg-icon>
+          LENGTH
+          <svg-icon *ngIf="settings.sort.order === 'duration'"
+            src="{{ settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+            [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+        </button>
+        <button mat-menu-item (click)="setOrder('viewsTotal', false)">
+          <svg-icon src="assets/icons/ondemand-video.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+          VIEWS
+          <svg-icon *ngIf="settings.sort.order === 'viewsTotal'"
+            src="{{ settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+            [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+        </button>
+        <button mat-menu-item (click)="setOrder('shared', false)">
+          <svg-icon src="assets/icons/share-variant.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+          SHARED
+          <svg-icon *ngIf="settings.sort.order === 'sharedTotal'"
+            src="{{ settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+            [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+        </button>
+        <button mat-menu-item (click)="setOrder('createdDate', false)">
+          <svg-icon src="assets/icons/date-created-alt.svg" class="sorter-column-icon" [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+          CREATED
+          <svg-icon *ngIf="settings.sort.order === 'createdDate'"
+            src="{{ settings.sort.reverse ? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg' }}"
+            [svgStyle]="{ 'width.px':17, 'height.px':17 }"></svg-icon>
+        </button>
+      </span>
+    </mat-menu>
+  </div>
+</div>

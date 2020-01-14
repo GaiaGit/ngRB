@@ -1,0 +1,79 @@
+<h2 mat-dialog-title>
+  <svg-icon src="assets/icons/reel-alt.svg" [svgStyle]="{ 'width.px':21 }"></svg-icon>
+  {{data.name}}
+</h2>
+
+<mat-dialog-content>
+
+  <mat-list role="list">
+   <mat-list-item role="listitem" class="details-row">
+     <svg-icon src="assets/icons/star-outline.svg"></svg-icon>
+     <div layout-align="space-between none" class="details-row-data">
+       <p>Reel Name</p>
+       <p class="details-reel-title">{{ setPlaceholder(data.name) }}</p>
+     </div>
+   </mat-list-item >
+   <mat-list-item role="listitem" class="details-row">
+     <svg-icon src="assets/icons/description.svg"></svg-icon>
+     <div layout-align="space-between none" class="details-row-data">
+       <p>Description</p>
+       <p>{{ setPlaceholder(data.description) }}</p>
+     </div>
+   </mat-list-item>
+   <mat-list-item role="listitem" class="details-row">
+     <svg-icon src="assets/icons/calendar-clock.svg"></svg-icon>
+     <div layout-align="space-between none" class="details-row-data">
+       <p>Modified</p>
+       <p flex="grow" layout-align="space-between center">
+         <span>{{ setPlaceholder(data.modifiedDate | date: 'mediumDate') }}</span>
+         <span>{{ setPlaceholder(data.modifiedDate | date: 'mediumTime') }}</span>
+     </div>
+   </mat-list-item>
+   <mat-list-item role="listitem" class="details-row">
+     <svg-icon src="assets/icons/timer.svg"></svg-icon>
+     <div layout-align="space-between none" class="details-row-data">
+       <p>Length</p>
+       <p flex="grow" layout-align="space-between center">
+         <span>{{ data.duration | duration: 'medium' }}</span>
+         <span>{{ data.tracksTotal }} tracks</span>
+       </p>
+     </div>
+   </mat-list-item>
+   <mat-list-item role="listitem" class="details-row">
+     <svg-icon src="assets/icons/ondemand-video.svg"></svg-icon>
+     <div layout-align="space-between none" flex="grow" class="details-row-data">
+       <p>Views</p>
+       <p flex="grow" layout-align="space-between center">
+         <span>{{ data.viewsTotal }} Total</span>
+         <span>{{ data.viewersTotal }} Viewers</span>
+       </p>
+     </div>
+   </mat-list-item>
+   <mat-list-item role="listitem" class="details-row">
+     <svg-icon src="assets/icons/share-variant.svg"></svg-icon>
+     <div layout-align="space-between none" flex="grow" class="details-row-data">
+       <p>Shared</p>
+       <p flex="grow" layout-align="space-between center">
+         <span>{{ data.sharedTotal }} Users</span>
+         <span>{{ data.editorsTotal || 'No' }} Editors</span>
+       </p>
+     </div>
+   </mat-list-item>
+   <mat-list-item role="listitem" class="details-row">
+     <svg-icon src="assets/icons/date-created-alt.svg"></svg-icon>
+     <div layout-align="space-between none" flex="grow" class="details-row-data">
+       <p>Created</p>
+       <p flex="grow" layout-align="space-between center">
+         <span>{{ data.createdDate | date: 'mediumDate' }}</span>
+         <span>{{ data.createdDate | date: 'mediumTime' }}</span>
+     </div>
+   </mat-list-item>
+
+ </mat-list>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</mat-dialog-actions>
