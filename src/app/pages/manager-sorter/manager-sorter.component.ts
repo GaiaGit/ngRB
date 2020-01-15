@@ -13,7 +13,9 @@ import { SCREENSIZE } from '../../shared/const';
 export class ManagerSorterComponent implements OnInit {
 
   @ViewChild(MatMenuTrigger, {static:false}) matMenuTrigger: MatMenuTrigger;
+  @Input() screenSize:number;
   @Input() settings;
+  @Input() expandedHeader:boolean;
   matcher: MediaQueryList;
   private isSmallScreen:boolean;
 

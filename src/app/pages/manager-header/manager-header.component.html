@@ -8,14 +8,21 @@
       </svg-icon>
       Manager
     </div>
-    <div class="navbar-chevron">
-      <button class="plain-button navbar-chevron-btn" (click)="toggleHeader()" aria-label="Toggle header">
-        <svg-icon
-          src="{{ expandedHeader ? 'assets/icons/chevron-down.svg' : 'assets/icons/chevron-up.svg' }}"
-          [svgStyle]="{ 'width.px':22 }">
-        </svg-icon>
-      </button>
+    <div class="manager-navbar-extra">
+      <div name="search" class="header-form-search" *ngIf="screenSize >= smScreen">
+        <input type="text" [(ngModel)]="searchText" autocomplete="off">
+      </div>
+      <div class="navbar-chevron">
+        <button class="plain-button navbar-chevron-btn" (click)="handleHeaderToggler()" aria-label="Toggle header">
+          <svg-icon
+            src="{{ expandedHeader ? 'assets/icons/chevron-down.svg' : 'assets/icons/chevron-up.svg' }}"
+            [svgStyle]="{ 'width.px':22 }">
+          </svg-icon>
+        </button>
+      </div>
     </div>
   </div>
-  <app-manager-sorter *ngIf="expandedHeader" [settings]="settings" [@headerToggler]></app-manager-sorter>
+  <div name="search" *ngIf="screenSize < smScreen && expandedHeader" class="header-form-search">
+    <input type="text" [(ngModel)]="searchText" autocomplete="off">
+  </div>
 </header>

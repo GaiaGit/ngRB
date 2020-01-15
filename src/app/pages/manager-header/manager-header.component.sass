@@ -1,3 +1,5 @@
+@import '../../../vars.sass'
+  
 .manager-header
   background-color: #37474f
   color: #fff
@@ -27,13 +29,39 @@
   opacity: .7
   margin-right: 15px
 
-.navbar-chevron
-  height: 100%
+.header-form-search
+  width: 100%
+  box-sizing: border-box
+  input
+    box-sizing: border-box
+    width: 100%
+    background: rgba(255, 255, 255, 0.25)
+    font-family: inherit
+    font-weight: 300
+    font-size: 1rem
+    border: none
+    padding: 10px
+    color: #ffffff
+    outline: none
+
+.manager-navbar-extra
   display: flex
+  flex-direction: row
   align-items: center
-  .navbar-chevron-btn
-    width: 24px
-    height: 20px
+
+  .header-form-search
+    padding-right: 15px
+    input
+      border-radius: 20px
+      padding: 5px 10px
+
+  .navbar-chevron
+    height: 100%
+    display: flex
+    align-items: center
+    .navbar-chevron-btn
+      width: 24px
+      height: 20px
 
 .compactHeader
   height: 45px
@@ -43,7 +71,3 @@
     height: 35px
     margin: 5px 0
     transition: .3s linear all
-
-app-manager-sorter
-  width: 100%
-  display: flex

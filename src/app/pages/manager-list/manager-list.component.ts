@@ -14,13 +14,14 @@ export class ManagerListComponent implements OnInit {
 
   @Input() data:Observable<Reel[]>;
   @Input() settings:Object;
+  @Input() screenSize:number;
 
   selectedItem:number;
 
   constructor(private reelService:ReelService) { }
   ngOnInit() { }
 
-  selectItem(id): void {
+  selectItem(id:number): void {
     this.selectedItem = id;
   }
 

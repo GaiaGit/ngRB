@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule, MatDialogRef, MatListModule, MatMenuModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -19,6 +20,7 @@ import { ManagerListItemComponent } from './pages/manager-list-item/manager-list
 import { DetailsDialogComponent } from './shared/dialogs/details-dialog/details-dialog.component';
 import { DurationPipe } from './shared/pipes/duration/duration.pipe';
 import { FilterFavoritePipe } from './shared/pipes/filter-favorite/filter-favorite.pipe';
+import { FilterSearchPipe } from './shared/pipes/filter-search/filter-search.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { FilterFavoritePipe } from './shared/pipes/filter-favorite/filter-favori
     ManagerListItemComponent,
     DetailsDialogComponent,
     DurationPipe,
-    FilterFavoritePipe
+    FilterFavoritePipe,
+    FilterSearchPipe
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { FilterFavoritePipe } from './shared/pipes/filter-favorite/filter-favori
     LayoutModule,
     MatDialogModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    FormsModule
   ],
   providers: [ ReelService ],
   bootstrap: [AppComponent]

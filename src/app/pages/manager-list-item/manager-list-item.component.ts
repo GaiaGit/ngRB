@@ -46,7 +46,7 @@ export class ManagerListItemComponent implements OnInit {
     this.columnFields = columnFields;
   }
 
-  openDetailsDialog(reel): void {
+  openDetailsDialog(reel:Reel): void {
     const dialogRef = this.dialog.open(DetailsDialogComponent, {
       width: '500px',
       data: reel
@@ -55,12 +55,12 @@ export class ManagerListItemComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {});
   }
 
-  addFavorite(ev): void {
+  addFavorite(ev:Event): void {
     this.reel.favoriteDate = this.reel.favoriteDate ? null : new Date();
     ev.stopPropagation();
   }
 
-  deleteThisReel(reel){
+  deleteThisReel(reel:Reel){
     this.delReel.emit(reel)
   }
 }

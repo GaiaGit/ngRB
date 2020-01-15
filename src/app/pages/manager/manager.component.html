@@ -1,4 +1,5 @@
 <div id="manager">
-  <app-manager-header [settings]="settings"></app-manager-header>
-  <app-manager-list [data]="data" [settings]="settings" (deleteReel)="deleteReel($event)"></app-manager-list>
+  <app-manager-header [settings]="settings" [screenSize]="screenSize" (toggleHeader)="toggleHeader($event)" [expandedHeader]="expandedHeader" [@headerToggler]></app-manager-header>
+  <app-manager-sorter *ngIf="expandedHeader" [settings]="settings" [screenSize]="screenSize" [expandedHeader]="expandedHeader" [@headerToggler]></app-manager-sorter >
+  <app-manager-list [data]="data" [settings]="settings" (deleteReel)="deleteReel($event)" [screenSize]="screenSize"></app-manager-list>
 </div>
